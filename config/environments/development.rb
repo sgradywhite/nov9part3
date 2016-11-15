@@ -28,7 +28,7 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :test
-  host = 'nov9part2-sgradywhite.c9users.io' # Don't use this literally; use your local dev host instead
+  host = 'nov9part3-sgradywhite.c9users.io' # Don't use this literally; use your local dev host instead
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   
   # Don't care if the mailer can't send.
