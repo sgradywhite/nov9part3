@@ -1,15 +1,16 @@
-<% provide(:title, "Hello") %>
+<% provide(:title, current_user.firstname) %>
 
 
 <html>
   
   <body>
+    
     <div class = "userbackground">
     
     
       <div class ="usertitletab", style= "margin: 0 auto;">
         <div class = "usertab1">
-          <%= link_to "Make an Appointment", userappointment_path %>
+          <%= link_to "Make an Appointment", userappointment_path(current_user) %>
           
 	       </div>
 	       <div class = "usertab2">

@@ -1,0 +1,17 @@
+<button id="1">Button 1</button>
+                  <button id="2">Button 2</button>
+                  <button id="3">Button 3</button>
+
+<script type="text/javascript">
+var reply_click = function()
+{
+ 
+    alert("Button clicked, id "+this.id+", text"+this.innerHTML);
+    
+}
+
+document.getElementById('1').onclick = reply_click;
+document.getElementById('2').onclick = reply_click;
+document.getElementById('3').onclick = reply_click;
+
+</script>

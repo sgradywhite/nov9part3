@@ -7,6 +7,7 @@ gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-sass',          '3.3.6'
 gem 'puma',                    '3.4.0'
+gem 'pg',                      '0.18.4'
 gem 'sass-rails',              '5.0.6'
 gem 'uglifier',                '3.0.0'
 gem 'coffee-rails',            '4.2.1'
@@ -15,7 +16,6 @@ gem 'turbolinks',              '5.0.0'
 gem 'jbuilder',                '2.4.1'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
   gem 'byebug',  '9.0.0', platform: :mri
 end
 
@@ -34,7 +34,6 @@ group :test do
 end
 
 group :production do
-   gem 'pg',   '0.18.4'
   gem 'rails_12factor'
 end
 

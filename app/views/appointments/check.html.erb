@@ -1,0 +1,108 @@
+<h1>Check Appointment from Patients</h1>
+
+<style type="text/css">
+    .box{
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+        border: 1px solid #000;
+    }
+    .one{ background: #ffffff; }
+    .two{ background: #ffffff; }
+    .three{ background: #ffffff; }
+    .threethree{ background: #ffffff;}
+</style>
+
+ <script type="text/javascript">
+  function confirm(a) {
+
+   alert("You have confirm this appointment for the patient." + a.id);
+
+        if (a.id == 3){
+        $(".three").show();
+         }
+    }
+    function notconfirm(b) {
+
+     alert("You have  NOT confirm this appointment for the patient."+ b.id);
+        if (a.id == 3){
+         $(".threethree").show();
+         }
+    }
+    </script>
+
+       <% Appointment.all.each do |u|  %>
+              <% if (u.status == "Pending") %>
+
+                  <h3><label>ID:  <%= u.id %> </h3></label>
+                  <h3><label>Patients ID: <%= u.users_id %> </h3></label>
+                  <h3><label>Date: <%= u.date %> </h3></label>
+                  <h3><label>First Name: <%= u.firstname %> </h3></label>
+                  <h3><label>Last Name: <%= u.lastname %></h3></label>
+                  <h3><label>Specialty: <%= u.specialty %></h3></label>
+                  <h3><label>Status:<%= u.status  %></h3></label>
+
+                  <input type="submit" value="Confirm" onclick = "confirm(this)" id= <%= u.id %>> </input>
+                  <input type="submit" value="Not Confirm"  onclick= "notconfirm(this)" id= <%= u.id %>> </input>
+              <% end %>
+      <% end %>
+
+
+      <div class="one box"><h1> You have confirmed for the patient </h1>
+        <% Appointment.all.each do |u|  %>
+                <% if (u.id == 1) %>
+                   <h3><label>ID:  <%= u.id %> </h3></label>
+                   <h3><label>Patients ID: <%= u.users_id %> </h3></label>
+                    <h3><label>Date: <%= u.date %> </h3></label>
+                    <h3><label>First Name: <%= u.firstname %> </h3></label>
+                    <h3><label>Last Name: <%= u.lastname %></h3></label>
+                    <h3><label>Specialty: <%= u.specialty %></h3></label>
+                    <h3><label>Status:<%= u.status = "Confirm" %></h3></label>
+                    <h3><label style="visibility: hidden;">:<%= u.save %></h3></label>
+                <% end %>
+        <% end %>
+      </div>
+
+      <div class="two box"><h1> You have confirmed for the patient </h1>
+        <% Appointment.all.each do |u|  %>
+                <% if (u.id == 2) %>
+                   <h3><label>ID:  <%= u.id %> </h3></label>
+                   <h3><label>Patients ID: <%= u.users_id %> </h3></label>
+                    <h3><label>Date: <%= u.date %> </h3></label>
+                    <h3><label>First Name: <%= u.firstname %> </h3></label>
+                    <h3><label>Last Name: <%= u.lastname %></h3></label>
+                    <h3><label>Specialty: <%= u.specialty %></h3></label>
+                    <h3><label>Status:<%= u.status = "Confirm" %></h3></label>
+                    <h3><label style="visibility: hidden;">:<%= u.save %></h3></label>
+                <% end %>
+        <% end %>
+      </div>
+      <div class="three box"><h1> You have confirmed for the patient </h1>
+        <% Appointment.all.each do |u|  %>
+                <% if (u.id == 3) %>
+                   <h3><label>ID:  <%= u.id %> </h3></label>
+                   <h3><label>Patients ID: <%= u.users_id, confirm_path(u.users_id, u.id) %> </h3></label>
+                    <h3><label>Date: <%= u.date %> </h3></label>
+                    <h3><label>First Name: <%= u.firstname %> </h3></label>
+                    <h3><label>Last Name: <%= u.lastname %></h3></label>
+                    <h3><label>Specialty: <%= u.specialty %></h3></label>
+                    <h3><label>Status:<%= u.status = "Confirm" %></h3></label>
+                    <h3><label style="visibility: hidden;">:<%= u.save %></h3></label>
+                <% end %>
+        <% end %>
+      </div>
+
+      <div class="threethree box"><h1> You have not confirmed for the patient </h1>
+        <% Appointment.all.each do |u|  %>
+                <% if (u.id == 3) %>
+                   <h3><label>ID:  <%= u.id %> </h3></label>
+                   <h3><label>Patients ID: <%= u.users_id %> </h3></label>
+                    <h3><label>Date: <%= u.date %> </h3></label>
+                    <h3><label>First Name: <%= u.firstname %> </h3></label>
+                    <h3><label>Last Name: <%= u.lastname %></h3></label>
+                    <h3><label>Specialty: <%= u.specialty %></h3></label>
+                    <h3><label>Status:<%= u.status = "NotConfirm" %></h3></label>
+                    <h3><label style="visibility: hidden;">:<%= u.save %></h3></label>
+                <% end %>
+        <% end %>
+      </div>

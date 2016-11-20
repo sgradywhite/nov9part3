@@ -12,15 +12,15 @@ class UsersController < ApplicationController
 
      def show
          @user = User.find(params[:id])
-         if @user.role == "admin"
-           redirect_to(admin_page_url)
-         elsif @user.role == "doctor"
-           redirect_to(doctor_page_url)
-         elsif @user.role == "office"
-          redirect_to(office_page_url)
-         elsif @user.role == "patient"
-          redirect_to(patient_page_url)
-         end
+             if @user.role == "admin"
+               redirect_to(admin_page_url)
+             elsif @user.role == "doctor"
+               redirect_to(doctor_page_url)
+             elsif @user.role == "office"
+              redirect_to(office_page_url)
+             elsif @user.role == "patient"
+              redirect_to(root_url)
+             end
      end
 
      def new
@@ -38,18 +38,23 @@ class UsersController < ApplicationController
      end
 
      def patient_page
+         @user = User.find(params[:id])
+             
+             if @user.role == "patient"
+              redirect_to(patient_page_path(current_user))
+             end
      end
 
-     def create
-    @user = User.new(user_params)
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = "You have created an account."
-      redirect_to root_url
-    else
-      render 'new'
+    def create
+        @user = User.new(user_params)
+        if @user.save
+          @user.send_activation_email
+          flash[:info] = "You have created an account."
+          redirect_to root_url
+        else
+          render 'new'
+        end
     end
-  end
 
      def edit
 
@@ -82,12 +87,22 @@ class UsersController < ApplicationController
      def database
          @users = User.all
      end
+        
+    def patient_page
+         
+    end
+    
 
      def appointment
+         
+
           @allergys = Appointment.where(:specialty => "Allergy")
           @backproblems = Appointment.where(:specialty => "BackProblems")
 
           @user_options = Appointment.order(:specialty).distinct.pluck(:specialty)
+          
+         
+           
      end
 
      def confirmappointment
@@ -108,23 +123,22 @@ class UsersController < ApplicationController
      # Confirms the correct user.
      def correct_user
          @user = User.find(params[:id])
-         redirect_to(root_url) unless current_user?(@user)
+             if @user.role == "admin"
+               redirect_to(admin_page_url)
+             elsif @user.role == "doctor"
+               redirect_to(doctor_page_url)
+             elsif @user.role == "office"
+              redirect_to(office_page_url)
+             elsif @user.role == "patient"
+              redirect_to(patient_path(current_user))
+             end
+             redirect_to(root_url) unless current_user?(@user)
      end
 
      # Confirms an admin user.
      def admin_user
+      @user = User.find(params[:id])
          redirect_to(admin_page_url) if current_user.admin?
      end
-      # Confirms an doctor user.
-     def doctor_user
-         redirect_to(doctor_page_url) if current_user.doctor?
-     end
-      # Confirms an office user.
-     def office_user
-         redirect_to(office_page_url) if current_user.office?
-     end
-      # Confirms an patient user.
-     def patient_user
-         redirect_to(patient_page_url) if current_user.patient?
-     end
+    
 end

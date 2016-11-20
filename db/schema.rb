@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161108163329) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "appointments", force: :cascade do |t|
     t.integer  "users_id"
     t.datetime "date"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20161108163329) do
     t.datetime "updated_at", null: false
     t.string   "specialty"
     t.string   "status"
-    t.index ["users_id"], name: "index_appointments_on_users_id"
+    t.index ["users_id"], name: "index_appointments_on_users_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20161108163329) do
     t.boolean  "patient",           default: false
     t.string   "role"
     t.string   "specialty"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
 end

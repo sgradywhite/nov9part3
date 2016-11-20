@@ -1,4 +1,4 @@
-<% provide(:title, "Created Appointment") %>
+<% provide(:title, current_user.firstname  ) %>
 <html>
 
 <h1>Confirm Appointment</h1>
@@ -33,6 +33,9 @@
         if(a == 2){
             $(".two").show();
         }
+        if(a == 3){
+            $(".three").show();
+        }
     
     var output = a
     var count = 0;
@@ -55,6 +58,7 @@
        <div id="hello"></div>
        
        
+       
       <div class="one box"><h1> Your confirmed appointment </h1> 
       <% Appointment.all.each do |u|  %>
               <% if (u.id == 1) %>
@@ -68,7 +72,8 @@
               <% end %>
               
       <% end %>
-    You have selected <strong>green option</strong> so i am here</div>    
+      </div>
+      
         
         <div class="two box"><h1> Your confirmed appointment </h1>
         <% Appointment.all.each do |u|  %>
@@ -85,7 +90,22 @@
       <% end %>
         
     </div>
-    <div class="C box"><h1> Hello World </h1>You have selected <strong>blue option</strong> so i am here</div>
+    <div class="three box"><h1> Your confirmed appointment </h1>
+    <% Appointment.all.each do |u|  %>
+              <% if (u.id == 3) %>
+                 <h3><label>ID:  <%= u.id %> </h3></label>
+                 <h3><label>Your ID:  <%= u.users_id = current_user.id   %> </h3></label>
+                  <h3><label>Date: <%= u.date %> </h3></label>
+                  <h3><label>First Name: <%= u.firstname %> </h3></label>
+                  <h3><label>Last Name: <%= u.lastname %></h3></label>
+                  <h3><label>Specialty: <%= u.specialty %></h3></label>
+                  <h3><label>Status:<%= u.status = "Pending" %></h3></label>
+                  <h3><label style="visibility: hidden;">:<%= u.save %></h3></label>
+              <% end %>
+              
+      <% end %>
+        
+    </div>
 
 
 

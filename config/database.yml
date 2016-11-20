@@ -1,18 +1,16 @@
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  username: user100
+  password: Password100
+  database: nov9part3pass_dev
+  port: 5432
+
 
 test:
-  adapter: postgres
-  database: my_database_test
-
-production:
-  adapter: postgres
-  database: my_database_production
-  username:
-  password:
+  adapter: postgresql
+  encoding: unicode
+  username: user100
+  password: Password100
+  database: nov9part3pass_test
+  port: 5432

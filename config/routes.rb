@@ -97,7 +97,7 @@ Rails.application.routes.draw do
     post   'login'   => 'sessions#create'
     delete 'logout'  => 'sessions#destroy'
     
-    
+    get   'checkappointment' => 'appointments#check'
     
     get    'userappointment' => 'users#appointment'
     get    'confirmappointment' => 'users#confirmappointment'
@@ -112,7 +112,7 @@ Rails.application.routes.draw do
     get 'patient_page' => 'users#patient_page'
 
     get    'createaccount'  => 'admins#new'
-     
+    post     '/createaccount',  to: 'admins#create' 
 
     resources :users
     resources :account_activations, only: [:edit]

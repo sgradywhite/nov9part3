@@ -1,5 +1,8 @@
+<% provide(:title, current_user.firstname) %>
 <!DOCTYPE html>
+
 <html lang="en">
+    
 <head>
 <meta charset="utf-8">
 <title>jQuery Show Hide Using Select Box</title>
@@ -48,7 +51,7 @@
     <script type="text/javascript">
     function submitappoint(abc) {
      
-    sessionStorage.setItem("sent", abc.id );
+    sessionStorage.setItem("sent", abc.id + " " + abc.name);
     
     
     window.open('confirmappointment.html',  "_self")
@@ -63,6 +66,7 @@
 
 </head>
 <body>
+    <h6>Hello:  <%= current_user.firstname %> <%= current_user.lastname %><h6></h6>
     <div>
         
     </div>
@@ -83,8 +87,8 @@
                     <div class = "appointmentbackground" >     
                     
                     <% @allergys.each do |appointment| %>
-                            <% if appointment.status != "Pending" %> 
-                            <button onclick="submitappoint(this)" class = "buttonappointment" id= <%= appointment.id %> >       
+                           <% if (appointment.status != "Pending" &&  appointment.status != "Confirm"  &&  appointment.status != "NotConfirm") %> 
+                            <button onclick="submitappoint(this)" class = "buttonappointment" id= "<%= appointment.id %>"  >       
                             <option><label name = "id">ID: <%= appointment.id %></label> <label>Date:  <%= appointment.date %></label><label > <%= appointment.firstname %></label>
                             <%= appointment.lastname %> <%= appointment.specialty %></option ></button > 
                             <% end %>
@@ -106,11 +110,11 @@
                     <div class = "appointmentbackground" >  
                     
                     <% @backproblems.each do |appointment| %>
-                        <% if appointment.status != "Pending" %> 
-                            <button onclick="submitappoint(this)" class = "buttonappointment" id= <%= appointment.id %> >       
+                        <% if (appointment.status != "Pending" &&  appointment.status != "Confirm"  &&  appointment.status != "NotConfirm") %> 
+                            <button onclick="submitappoint(this)" class = "buttonappointment" id= "<%= appointment.id %>" >       
                             <option><label name = "id">ID: <%= appointment.id %></label> <label>Date:  <%= appointment.date %></label><label > <%= appointment.firstname %></label>
                             <%= appointment.lastname %> <%= appointment.specialty %></option ></button > 
-                            <% end %>
+                        <% end %>
                     <% end %>
                     
                      </div>
