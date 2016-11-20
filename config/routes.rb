@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-    
+
     root                'static_pages#home'
-    
+
     get    'help'    => 'static_pages#help'
     get    'about'   => 'static_pages#about'
     get    'aboutus' => 'static_pages#aboutus'
     get    'contact' => 'static_pages#contact'
-    
+
     get    'allergyimmunology'   => 'static_pages#allergyimmunology'
     get    'anatomicpathology' => 'static_pages#anatomicpathology'
     get    'anatomicclinicalpathology' => 'static_pages#anatomicclinicalpathology'
@@ -91,32 +91,36 @@ Rails.application.routes.draw do
     get    'transplanthepatology' => 'static_pages#transplanthepatology'
     get    'urology' => 'static_pages#urology'
     get    'vascularsurgery' => 'static_pages#vascularsurgery'
-    
+
     get    'signup'  => 'users#new'
     get    'login'   => 'sessions#new'
     post   'login'   => 'sessions#create'
     delete 'logout'  => 'sessions#destroy'
-    
+
     get   'checkappointment' => 'appointments#check'
-    
+
     get    'userappointment' => 'users#appointment'
     get    'confirmappointment' => 'users#confirmappointment'
     get    'usersearch' => 'users#search'
     get    'userdatabase' => 'users#database'
     get    'userfile'  => 'users#file'
-    
-    
+
+
     get 'admin_page' => 'users#admin_page'
     get 'doctor_page' => 'users#doctor_page'
     get 'office_page' => 'users#office_page'
     get 'patient_page' => 'users#patient_page'
 
     get    'createaccount'  => 'admins#new'
-    post     '/createaccount',  to: 'admins#create' 
+    post     '/createaccount',  to: 'admins#create'
 
     resources :users
     resources :account_activations, only: [:edit]
     resources :password_resets,     only: [:new, :create, :edit, :update]
 
     resources :appointments
+
+    resources :confirm_appointment
+    resources :cancel_appointment
+
 end

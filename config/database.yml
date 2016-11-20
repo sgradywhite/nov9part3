@@ -14,3 +14,9 @@ test:
   password: Password100
   database: nov9part3pass_test
   port: 5432
+
+  production:
+    adapter: postgres
+    database: nov9part3pass_production
+    username:
+    password:
